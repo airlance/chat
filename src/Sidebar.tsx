@@ -1,14 +1,14 @@
 import { Profile } from "./Profile.tsx";
 import { Logo } from "./Logo.tsx";
-import { Stories } from "./stories/Stories.tsx";
-import type { Story } from "./stories/types.ts";
+import { Story } from "./stories/Story.tsx";
+import type { IStory } from "./stories/types.ts";
 import { ContactItem } from "./components/ContactItem.tsx";
 import { contacts } from "./data/contacts.ts";
 import { Tooltip } from "./hook/useTooltip.tsx";
 import { ChatListSettings } from "./ChatListSettings.tsx";
 import { Icon } from './icons';
 
-const mockStories: Story[] = [
+const mockStories: IStory[] = [
     {
         id: 1,
         name: 'Konnor',
@@ -199,7 +199,7 @@ export function Sidebar() {
                     </div>
 
                     <div className="flex h-[calc(100%-4.5rem)] grow flex-col">
-                        <Stories
+                        <Story
                             title="History"
                             stories={mockStories}
                             onAddStory={handleAddStory}

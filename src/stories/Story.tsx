@@ -1,11 +1,19 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { StoriesProps } from './types';
+import { useModal } from "../hook/useModal.ts";
+import { Modal } from "../components/Modal.tsx";
 
-export function Stories({
+export function Story({
                             stories,
                             title = 'History',
                             onAddStory
                         }: StoriesProps) {
+
+    const blurModal = useModal({
+        onOpen: () => console.log('Blur modal opened'),
+        onClose: () => console.log('Blur modal closed'),
+    });
+
     return (
         <div>
             <div className="flex items-center justify-between px-4">
@@ -45,6 +53,7 @@ export function Stories({
                     {stories.map((story) => (
                         <SwiperSlide
                             key={story.id}
+                            onClick={() => blurModal.open()}
                             className="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center"
                         >
                             <div
@@ -67,6 +76,13 @@ export function Stories({
                     ))}
                 </Swiper>
             </div>
+            <Modal
+                isOpen={blurModal.isOpen}
+                onClose={blurModal.close}
+                backdropBlur
+            >
+                <button onClick={blurModal.close}>close</button>
+            </Modal>
         </div>
     );
 }

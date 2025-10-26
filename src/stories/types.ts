@@ -1,4 +1,4 @@
-export interface Story {
+export interface IStory {
     id: string | number;
     name: string;
     avatar: string;
@@ -6,7 +6,7 @@ export interface Story {
 }
 
 export interface StoriesProps {
-    stories: Story[];
+    stories: IStory[];
     title?: string;
     onAddStory?: () => void;
 }
